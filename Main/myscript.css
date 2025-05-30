@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0f1115;
+  color: #e0e0e0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar tetap */
+.sidebar {
+  width: 250px;
+  background-color: #000;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 5px #ff4fcb);
+}
+
+.icon {
+  width: 20px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  color: #ffc7ec;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar nav a:hover {
+  color: #ff4fcb;
+  transform: translateX(5px);
+}
+
+/* Konten scrollable kanan */
+.script-list {
+  flex: 1;
+  overflow-y: auto;
+  height: 100vh;
+  padding: 40px;
+  background: linear-gradient(145deg, #0f1115, #1a1d24);
+  scrollbar-width: thin;
+  scrollbar-color: #ff4fcb #1a1d24;
+}
+
+.script-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.script-list::-webkit-scrollbar-track {
+  background: #1a1d24;
+}
+
+.script-list::-webkit-scrollbar-thumb {
+  background-color: #ff4fcb;
+  border-radius: 4px;
+}
+
+/* Tabel header & row */
+.list-header, .list-row {
+  display: flex;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.list-header {
+  background-color: #1f232b;
+  font-weight: 600;
+  color: #ff4fcb;
+  border-bottom: 2px solid #ff4fcb;
+}
+
+.list-row {
+  background-color: #181c22;
+  border: 1px solid #262b33;
+}
+
+.list-row:hover {
+  background-color: #21262e;
+}
+
+.col {
+  flex: 1;
+  overflow-wrap: break-word;
+}
+
+.title {
+  flex: 2;
+}

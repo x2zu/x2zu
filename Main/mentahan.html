@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Open Source</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="myscript.css">
+</head>
+<body>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="top-sidebar">
+        <img class="logo" src="images/X_Logo_Design-removebg-preview.png" alt="x2zu Logo" />
+        <nav>
+            <a href="LandingPage/landingpage.html"><img src="images/vip.webp" class="icon" alt="Home Icon"> Home</a>
+          <a href="index.html"><img src="images/favorite.png" class="icon" alt="Home Icon"> General</a>
+          <a href="myscript.html"><img src="images/map.webp" class="icon" alt="Script Icon"> Script</a>
+        <a href="Contructions/main.html"><img src="images/gift.webp" class="icon" alt="Exploit Icon"> Exploit</a>
+        </nav>        
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <div class="centered" style="width: 100%; max-width: 1000px;">
+        <h2 class="section-title">Grow A Garden</h2>
+
+        <!-- Scrollable Script Viewer -->
+        <div class="code-container" id="codeContainer">
+          <pre><code class="language-lua" id="codeBlock">
+
+          </code></pre>
+        </div>
+
+        <!-- Buttons -->
+        <button class="copy-button" onclick="copyCode()">Copy</button>
+        <button class="expand-button" onclick="openModal()">Expand</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal for expanded code -->
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title">Script Viewer - Expanded</div>
+      <div class="modal-buttons">
+        <button class="copy-button" onclick="copyModalCode()">Copy</button>
+        <button class="copy-button" id="editToggleBtn" onclick="toggleEdit()">Edit</button>
+        <button class="copy-button" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+    <!-- Code display -->
+    <pre class="modal-content" id="modalCode"></pre>
+    <!-- Editable textarea -->
+    <textarea class="edit-area" id="editArea"></textarea>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" id="toast">Code copied!</div>
+
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-lua.min.js"></script>
+
+  <!-- Scripts -->
+  <script>
+    const toast = document.getElementById("toast");
+    const modal = document.getElementById("modal");
+    const modalCode = document.getElementById("modalCode");
+    const codeBlock = document.getElementById("codeBlock");
+    const editArea = document.getElementById("editArea");
+    const editToggleBtn = document.getElementById("editToggleBtn");
+
+    // Copy from main view
+    function copyCode() {
+      const code = codeBlock.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        showToast("Code copied!");
+      });
+    }
+
+    // Show toast helper
+    function showToast(message) {
+      toast.textContent = message;
+      toast.style.opacity = "1";
+      setTimeout(() => {
+        toast.style.opacity = "0";
+      }, 2000);
+    }
+
+    // Open modal and fill code
+    function openModal() {
+      modal.classList.add("active");
+      modalCode.textContent = codeBlock.innerText;
+      Prism.highlightElement(modalCode);
+      editArea.classList.remove("active");
+      modalCode.style.display = "block";
+      editArea.value = codeBlock.innerText;
+      editToggleBtn.textContent = "Edit";
+    }
+
+    // Close modal
+    function closeModal() {
+      modal.classList.remove("active");
+    }
+
+    // Copy code from modal (either edited or original)
+    function copyModalCode() {
+      const textToCopy = editArea.classList.contains("active") ? editArea.value : modalCode.innerText;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast("Code copied!");
+      });
+    }
+
+    // Toggle edit mode in modal
+    function toggleEdit() {
+      if (editArea.classList.contains("active")) {
+        // Save edits back to code display
+        codeBlock.innerText = editArea.value;
+        modalCode.textContent = editArea.value;
+        Prism.highlightElement(modalCode);
+        editArea.classList.remove("active");
+        modalCode.style.display = "block";
+        editToggleBtn.textContent = "Edit";
+      } else {
+        // Enable edit textarea
+        editArea.classList.add("active");
+        modalCode.style.display = "none";
+        editToggleBtn.textContent = "Save";
+      }
+    }
+  </script>
+</body>
+</html>

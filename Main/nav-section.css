@@ -1,0 +1,240 @@
+/* Semua section disembunyikan kecuali jika jadi target */
+.section {
+  display: none;
+}
+
+.section:target {
+  display: block;
+}
+
+/* Home tampil default jika tidak ada anchor */
+body:not(:has(:target)) #home {
+  display: block;
+}
+
+.box-layout .exploit-card {
+  background: #0b0b0b;
+  border: 1px solid rgba(0, 149, 207, 0.15);
+  border-radius: 16px;
+  padding: 30px 25px;
+  text-align: right; /* rata kanan */
+  width: 100%;
+  min-width: 320px;  /* lebih kecil */
+  max-width: 380px;  /* lebih kecil */
+  box-shadow: 0 0 12px rgba(0, 64, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  white-space: nowrap;       /* jangan wrap ke baris baru */
+  overflow: hidden;          /* sembunyikan kelebihan teks */
+  text-overflow: ellipsis;   /* tanda titik-titik jika teks terpotong */
+}
+
+.box-layout .exploit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(228, 13, 196, 0.3);
+}
+
+
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar nav a .icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+/* Efek line pesawat terbang */
+.shooting-star {
+  position: absolute;
+  top: 0;
+  left: -150px; /* mulai di luar layar kiri */
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, white, rgba(255,255,255,0));
+  filter: drop-shadow(0 0 6px white);
+  opacity: 0.8;
+  border-radius: 999px;
+  animation: shooting 2.5s ease-in-out forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Animasi dari kiri ke kanan diagonal */
+@keyframes shooting {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120vw, 100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+.ufo {
+  position: absolute;
+  top: 15vh;
+  left: -100px;
+  width: 80px;
+  height: 40px;
+  background: radial-gradient(circle at 50% 60%, rgba(181, 126, 255, 0.6), #b100a0); /* ungu ke pink */
+  border-radius: 50% / 40%;
+  box-shadow:
+    0 0 15px 5px rgba(181, 126, 255, 0.6),
+    inset 0 -10px 15px 0 rgba(255, 182, 255, 0.3); /* pink lembut */
+  filter: drop-shadow(0 0 6px #bf00ff);
+  animation: ufo-hover 8s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Antena UFO */
+.ufo::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 35px;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #ffe6fa, #d633ff); /* putih pink ke ungu terang */
+  border-radius: 50%;
+  box-shadow: 0 0 6px #c800ff;
+}
+
+@keyframes ufo-hover {
+  0% {
+    left: -100px;
+    top: 15vh;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    left: 25vw;
+    top: 12vh;
+    transform: translate(5px, -5px) rotate(5deg);
+  }
+  50% {
+    left: 50vw;
+    top: 17vh;
+    transform: translate(-5px, 5px) rotate(-5deg);
+  }
+  75% {
+    left: 75vw;
+    top: 14vh;
+    transform: translate(5px, -5px) rotate(5deg);
+  }
+  100% {
+    left: calc(100vw + 100px);
+    top: 15vh;
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+/* row section myscriptlist */
+/* General */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0f1115;
+  color: #e0e0e0;
+}
+
+/* Layout */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #161a20;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 0 10px rgba(235, 106, 200, 0.6);
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 5px #00ffe5);
+}
+
+.icon {
+  width: 20px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  color: #de76d3;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar nav a:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+/* Script List */
+.script-list {
+  flex-grow: 1;
+  padding: 40px;
+  background: linear-gradient(145deg, #0f1115, #1a1d24);
+}
+
+/* Header & Row Styling */
+.list-header, .list-row {
+  display: flex;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.list-header {
+  background-color: #1f232b;
+  font-weight: 600;
+  color: #e37eee;
+  border-bottom: 2px solid #ffbef2;
+}
+
+.list-row {
+  background-color: #181c22;
+  border: 1px solid #262b33;
+}
+
+.list-row:hover {
+  background-color: #21262e;
+}
+
+/* Column Flexing */
+.col {
+  flex: 1;
+  overflow-wrap: break-word;
+}
+
+.title {
+  flex: 2;
+}
+
+.col.title a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.col.title a:hover {
+  color: #00ffe5;
+  text-decoration: underline;
+}

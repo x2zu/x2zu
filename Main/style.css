@@ -1,0 +1,610 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background: #161a20;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 4px 0 12px rgba(59, 75, 245, 0.08);
+  position: relative;
+  z-index: 10;
+}
+
+.top-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+
+
+.logo {
+  color: #0142e4;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 5px;
+  text-shadow: 0 0 8px rgba(126, 185, 223, 0.5);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ccc;
+  padding: 12px 18px;
+  background: #111;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: 0.2s ease;
+  font-weight: 500;
+}
+
+.sidebar nav a:hover {
+  background: #870382;
+  color: #fff;
+  transform: scale(1.03);
+  box-shadow: 0 0 10px #a501a5;
+}
+
+
+/* ===== Main container ===== */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  background-color: #000; /* hitam pekat */
+}
+
+/* Layer awan berbentuk blur dan gradient */
+.clouds, .clouds2, .clouds3 {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+  filter: blur(40px);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation-timing-function: linear;
+}
+
+/* Awan layer 1 */
+.clouds {
+  animation: moveClouds 60s linear infinite;
+  opacity: 0.2;
+}
+
+/* Awan layer 2 */
+.clouds2 {
+  animation: moveCloudsReverse 90s linear infinite;
+  opacity: 0.12;
+  filter: blur(60px);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+}
+
+/* Awan layer 3 */
+.clouds3 {
+  animation: moveClouds 120s linear infinite;
+  opacity: 0.08;
+  filter: blur(80px);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+}
+
+/* Animasi bergerak ke kanan */
+@keyframes moveClouds {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Animasi bergerak ke kiri */
+@keyframes moveCloudsReverse {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+
+/* ===== Konten di depan ===== */
+.centered {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.avatar-wrapper {
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+button {
+  margin-top: 15px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+
+
+.centered {
+  text-align: center;
+  max-width: 600px;
+  animation: fadeIn 1s ease;
+}
+h2 {
+  position: relative;
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #c084fc, #a855f7, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
+  z-index: 1;
+}
+
+/* Container partikel */
+h2::before, h2::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #c084fc;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 4px #a855f7);
+  opacity: 0.8;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Beberapa partikel tambahan dengan delay dan posisi berbeda */
+
+h2::before {
+  animation-name: particleMove1;
+  animation-duration: 6s;
+  transform-origin: center;
+  animation-delay: 0s;
+  left: 10%;
+  top: 10%;
+}
+
+h2::after {
+  animation-name: particleMove2;
+  animation-duration: 8s;
+  animation-delay: 3s;
+  left: 80%;
+  top: 20%;
+}
+
+/* Untuk lebih banyak partikel, gunakan elemen span dalam h2, contoh di HTML:
+<h2>Title <span class="particle"></span><span class="particle"></span>...</h2> */
+
+/* Animasi gerakan acak */
+@keyframes particleMove1 {
+  0%   { transform: translate(0, 0); opacity: 0.8;}
+  25%  { transform: translate(15px, -10px); opacity: 0.5;}
+  50%  { transform: translate(5px, 15px); opacity: 0.7;}
+  75%  { transform: translate(-10px, 10px); opacity: 0.4;}
+  100% { transform: translate(0, 0); opacity: 0.8;}
+}
+
+@keyframes particleMove2 {
+  0%   { transform: translate(0, 0); opacity: 0.7;}
+  25%  { transform: translate(-10px, 10px); opacity: 0.3;}
+  50%  { transform: translate(-20px, -10px); opacity: 0.6;}
+  75%  { transform: translate(10px, -5px); opacity: 0.2;}
+  100% { transform: translate(0, 0); opacity: 0.7;}
+}
+
+
+p {
+  color: #aaa;
+  font-size: 1.2rem;
+}
+
+button {
+  background: linear-gradient(to bottom, #3c0d73, #8a2be2); /* ungu tua ke ungu-pink */
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 0 10px rgba(60, 13, 115, 0.5); /* glow ungu tua */
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to bottom, #2a0057, #7a1fbf); /* versi hover lebih dalam */
+  transform: scale(1.05);
+}
+
+.avatar-wrapper {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 25px;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b794f4, #ff6ec7); /* ungu soft ke pink lembut */
+  box-shadow: 0 0 20px #d291ff; /* efek glow ungu-pink */
+}
+
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: #0a0a0a;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid #ff003c;
+  box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+  font-size: 15px;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+
+.toast.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+.section-title {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #ff003c;
+  text-shadow: 0 0 8px rgba(255, 0, 60, 0.5);
+}
+
+#exploit-section.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.exploit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.exploit-card {
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 0, 60, 0.15);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(255, 0, 60, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exploit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 16px rgba(255, 0, 60, 0.3);
+}
+
+.exploit-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.exploit-card h3 {
+  color: #3300ff;
+  margin-bottom: 6px;
+}
+
+.exploit-card p {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 12px;
+}
+
+.main {
+  scrollbar-width: thin;
+  scrollbar-color: #d96bbe #3c0a5a; /* pink ke ungu gelap */
+}
+
+.main::-webkit-scrollbar {
+  width: 10px;
+}
+
+.main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d96bbe, #3c0a5a);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(217, 107, 190, 0.6);
+  border: 2px solid #0a0a0a;
+}
+
+.main::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e488cc, #56107a);
+  box-shadow: 0 0 12px rgba(217, 107, 190, 0.8);
+}
+
+/* Scrollbar globale personnalisée */
+* {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ffffff #3c0a5a;
+}
+
+/* Chrome / Edge / Webkit */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #d96bbe, #3c0a5a);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(217, 107, 190, 0.6);
+  border: 2px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #e488cc, #56107a);
+  box-shadow: 0 0 15px rgba(217, 107, 190, 0.8);
+}
+
+
+#myscript-section.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.exploit-content button + button {
+  margin-top: 10px; /* Ajuste ici l’espace entre les deux boutons */
+}
+.code-container {
+  max-height: 500px;
+  overflow-y: auto;
+  background: #0b0b0b;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 12px rgba(255, 0, 60, 0.2);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.copy-button, .expand-button {
+  background: linear-gradient(90deg, #8e44ad, #e91e63); /* ungu ke pink */
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 0 10px rgba(233, 30, 99, 0.7); /* glow pink */
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-right: 10px;
+}
+
+.copy-button:hover, .expand-button:hover {
+  background: linear-gradient(90deg, #e91e63, #8e44ad);
+  box-shadow: 0 0 14px rgba(233, 30, 99, 0.9);
+  transform: scale(1.05);
+}
+
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0a0a0a;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid #dd1feb;
+  box-shadow: 0 0 15px rgba(254, 7, 213, 0.4);
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 40px;
+  box-sizing: border-box;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal.active {
+  display: block;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-content {
+  background: #0b0b0b;
+  border-radius: 16px;
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+}
+
+.edit-area {
+  width: 100%;
+  height: 70vh;
+  background: #0b0b0b;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  font-family: monospace;
+  font-size: 16px;
+  resize: none;
+  box-shadow: 0 0 12px rgba(160, 0, 158, 0.5);
+  display: none;
+}
+
+.edit-area.active {
+  display: block;
+}
+
+
+
+

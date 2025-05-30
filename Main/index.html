@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="nav-section.css">
+    <link rel="stylesheet" href="myscript.css">
+</head>
+<body>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="top-sidebar">
+        <img class="logo" src="images/X_Logo_Design-removebg-preview.png" alt="x2zu Logo" />
+
+        <nav>
+            <a href="LandingPage/landingpage.html"><img src="images/vip.webp" class="icon" alt="Home Icon"> Home</a>
+          <a href="index.html"><img src="images/favorite.png" class="icon" alt="Home Icon"> General</a>
+          <a href="myscript.html"><img src="images/map.webp" class="icon" alt="Script Icon"> Script</a>
+          <a href="Contructions/main.html"><img src="images/gift.webp" class="icon" alt="Exploit Icon"> Exploit</a>
+        </nav>        
+      </div>
+    </aside>
+   
+<main class="main">
+  <div class="clouds"></div>
+  <div class="clouds2"></div>
+  <div class="clouds3"></div>
+
+  <div class="stars"></div> <!-- Container bintang kecil -->
+
+  <div class="twinkle-star"></div>
+  <div class="twinkle-star"></div>
+  <div class="twinkle-star"></div>
+  <div class="twinkle-star"></div>
+  <div class="twinkle-star"></div>
+
+  <div class="ufo"></div> <!-- UFO -->
+  
+
+  <div class="centered">
+    <div class="avatar-wrapper">
+      <img src="images/profile.jpg" alt="Avatar Discord" class="avatar" />
+    </div>
+    <h2>x2zu</h2>
+    <p>The best skids ever in the world's</p>
+    <button onclick="window.open('https://discord.gg/FmMuvkaWvG', '_blank')">Discord Server</button>
+  </div>
+</main>
+<script>
+ 
+  function createShootingStar() {
+    const star = document.createElement('div');
+    star.classList.add('shooting-star');
+    star.style.top = `${Math.random() * 70 + 10}vh`;
+    document.querySelector('.main').appendChild(star);
+    setTimeout(() => star.remove(), 2500);
+  }
+  setInterval(() => {
+    createShootingStar();
+  }, Math.random() * 3000 + 3000);
+
+  // Stars kecil twinkle:
+  const starsContainer = document.querySelector('.stars');
+  function createStar() {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    const size = Math.random() * 2 + 1;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.opacity = Math.random() * 0.7 + 0.3;
+    star.style.animationDelay = `${Math.random() * 3}s`;
+    starsContainer.appendChild(star);
+  }
+  for (let i = 0; i < 80; i++) {
+    createStar();
+  }
+</script>
+
+</body>
+</html>
