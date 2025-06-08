@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>X2ZU SOURCES HUB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="scriptlistv2.css" />
+</head>
+<body>
+  <header>
+    <h1>X2ZU SOURCES HUB</h1>
+    <div class="search-bar" role="search">
+      <phosphor-icon name="magnifying-glass" weight="bold" size="24" style="color:#999"></phosphor-icon>
+      <input id="search-input" type="search" aria-label="Search scripts" placeholder="Search scripts..." autocomplete="off" />
+    </div>
+    <button id="back-btn" class="back-btn" aria-label="Go back">MAIN PAGE</button>
+  </header>
+
+  <main>
+    <div id="script-grid" aria-live="polite" aria-atomic="true" role="list"></div>
+  </main>
+
+  <footer id="pagination-controls" aria-label="Pagination controls">
+    <button id="prev-page" aria-label="Previous page" disabled>Prev</button>
+    <div id="pagination-info" aria-live="polite" aria-atomic="true">Page 1 of 1</div>
+    <button id="next-page" aria-label="Next page" disabled>Next</button>
+  </footer>
+
+  <div id="modal-bg" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+    <div id="modal-window" tabindex="-1">
+      <div id="modal-header">
+        <h2 id="modal-title">SOURCE OF SCRIPT</h2>
+        <div class="modal-buttons">
+          <button id="copy-btn" class="modal-btn" aria-label="Copy script content" title="Copy">
+            <phosphor-icon name="clipboard" weight="bold" size="20" style="pointer-events:none;">📋</phosphor-icon>
+          </button>
+          <button id="close-btn" class="modal-btn" aria-label="Close modal" title="Close">&times;</button>
+        </div>
+      </div>
+      <textarea id="modal-text" readonly aria-describedby="modal-title" spellcheck="false"></textarea>
+    </div>
+  </div>
+
+  <script src="scriptlistv2.js"></script>
+</body>
+</html>
